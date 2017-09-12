@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.geode.cache.Region;
 import org.apache.geode.cache.client.ClientCache;
 import org.apache.geode.cache.client.ClientRegionShortcut;
@@ -19,10 +21,10 @@ import org.apache.geode.cache.query.Struct;
 import com.wntime.gflearning.Application;
 import com.wntime.gflearning.Utils;
 
-import jline.internal.Log;
-
 public class PersonQuery implements AutoCloseable {
 
+	private static final Log log = LogFactory.getLog(PersonQuery.class);
+	
 	private ClientCache client;
 	
 	private Region<String, Person> region;
@@ -56,7 +58,7 @@ public class PersonQuery implements AutoCloseable {
 	
 	public List<Person> startCq(String oql) throws Exception {
 		if(personTracker != null) {
-			Log.error("Another Cq exists.");
+			log.error("Another Cq exists.");
 			return null;
 		}
 		

@@ -1,6 +1,7 @@
 package com.wntime.gflearning.query;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.geode.cache.Region;
@@ -15,6 +16,7 @@ import org.apache.geode.cache.query.QueryService;
 import org.apache.geode.cache.query.SelectResults;
 import org.apache.geode.cache.query.Struct;
 
+import com.wntime.gflearning.Application;
 import com.wntime.gflearning.Utils;
 
 import jline.internal.Log;
@@ -26,7 +28,10 @@ public class PersonQuery implements AutoCloseable {
 	private Region<String, Person> region;
 	
 	public PersonQuery() {
-		this.client = Utils.connectAsClient(null);
+		HashMap<String, String> props = new HashMap<>();
+		props.put("log-level", "info");
+		
+		this.client = Utils.connectAsClient(Application.LOCATOR_HOST, Application.LOCATOR_PORT, props);
 		this.region = client.<String, Person>createClientRegionFactory(ClientRegionShortcut.PROXY).create("Person");
 		
 		CqAttributesFactory cqf = new CqAttributesFactory();

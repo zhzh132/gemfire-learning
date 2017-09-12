@@ -23,7 +23,7 @@ public class Utils {
 		return cache;
 	}
 	
-	public static ClientCache connectAsClient(Map<String, String> props) {
+	public static ClientCache connectAsClient(String locatorHost, int locatorPort, Map<String, String> props) {
 		ClientCacheFactory factory = new ClientCacheFactory();
 		if(props != null) {
 			for(String key : props.keySet()) {
@@ -31,7 +31,7 @@ public class Utils {
 			}
 		}
 		
-		factory.addPoolLocator("localhost", 10334);
+		factory.addPoolLocator(locatorHost, locatorPort);
 		factory.setPoolSubscriptionEnabled(true);
 		factory.setPoolSubscriptionRedundancy(1);
 		

@@ -9,6 +9,10 @@ public class Application {
 
 	private static final Log log = LogFactory.getLog(Application.class);
 	
+	public static final String LOCATORS     = "192.168.56.1[30001]";
+	public static final String LOCATOR_HOST = "192.168.56.1";
+	public static final int    LOCATOR_PORT = 30001;
+	
 	public static void main(String[] args) {
 		if(args.length < 1) {
 			log.error("Command missing.");

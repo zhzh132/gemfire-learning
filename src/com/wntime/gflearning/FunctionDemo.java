@@ -18,8 +18,9 @@ public class FunctionDemo {
 
 	public static void start(String[] args) throws Exception {
 		
-		ClientCache client = Utils.connectAsClient(null);
-		Region<String, Person> region = client.<String, Person>createClientRegionFactory(ClientRegionShortcut.PROXY).create("Person");
+		ClientCache client = Utils.connectAsClient(Application.LOCATOR_HOST, Application.LOCATOR_PORT, null);
+		Region<String, Person> region = client.<String, Person>createClientRegionFactory(
+				ClientRegionShortcut.PROXY).create("Person");
 		
 		Utils.initPersonData(region);
 		

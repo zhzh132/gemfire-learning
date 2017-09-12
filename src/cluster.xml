@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cache xsi:schemaLocation="http://schema.pivotal.io/gemfire/cache http://schema.pivotal.io/gemfire/cache/cache-8.1.xsd" lock-lease="120" lock-timeout="60" search-timeout="300" is-server="false" copy-on-read="false" version="8.1" xmlns="http://schema.pivotal.io/gemfire/cache" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <async-event-queue id="my-async-queue" persistent="false" parallel="false" batch-size="100">
+  	<async-event-listener>
+  		<class-name>com.wntime.gflearning.listeners.MyAsyncEventListener</class-name>
+  		<parameter name="url">
+       		<string>jdbc:postgresql://localhost:5432/gemfire_data</string>
+       	</parameter>
+       	<parameter name="user">
+       		<string>postgres</string>
+       	</parameter>
+       	<parameter name="password">
+       		<string>123456</string>
+       	</parameter>
+  	</async-event-listener>
+  </async-event-queue>
+  
+  
+  <region name="region1">
+        <region-attributes refid="PARTITION"
+            statistics-enabled="true" async-event-queue-ids="my-async-queue">
+            <key-constraint>java.lang.String</key-constraint>
+            <partition-attributes redundant-copies="1"
+                recovery-delay="1200000" startup-recovery-delay="1200000"
+                total-num-buckets="11">
+            </partition-attributes>
+			
+			<cache-loader>
+            	<class-name>com.wntime.gflearning.data.DatabaseCacheLoader</class-name>
+            	<parameter name="url">
+            		<string>jdbc:postgresql://localhost:5432/gemfire_data</string>
+            	</parameter>
+            	<parameter name="user">
+            		<string>postgres</string>
+            	</parameter>
+            	<parameter name="password">
+            		<string>123456</string>
+            	</parameter>
+            	<parameter name="table">
+            		<string>region1</string>
+            	</parameter>
+            </cache-loader>
+			
+			<cache-writer>
+            	<class-name>com.wntime.gflearning.data.DatabaseCacheWriter</class-name>
+            	<parameter name="url">
+            		<string>jdbc:postgresql://localhost:5432/gemfire_data</string>
+            	</parameter>
+            	<parameter name="user">
+            		<string>postgres</string>
+            	</parameter>
+            	<parameter name="password">
+            		<string>123456</string>
+            	</parameter>
+            </cache-writer>
+            
+			<cache-listener>
+            	<class-name>com.wntime.gflearning.listeners.MyCacheListener</class-name>
+            </cache-listener>
+            
+            
+        </region-attributes>
+        
+    </region>
+    
+    <region name="Person">
+        <region-attributes refid="PARTITION" statistics-enabled="true">
+            <key-constraint>java.lang.String</key-constraint>
+            <value-constraint>com.wntime.gflearning.query.Person</value-constraint>
+            <partition-attributes redundant-copies="1"
+                recovery-delay="1200000" startup-recovery-delay="1200000"
+                total-num-buckets="5">
+            </partition-attributes>
+        </region-attributes>
+        <index name="personNameIndex" from-clause="/Person p" expression="p.name" key-index="true" />
+        <index name="personAgeIndex" from-clause="/Person p" expression="p.age" type="hash" />
+    </region>
+</cache>

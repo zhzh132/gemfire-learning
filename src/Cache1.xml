@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<cache xmlns="http://schema.pivotal.io/gemfire/cache" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.pivotal.io/gemfire/cache http://schema.pivotal.io/gemfire/cache/cache-8.1.xsd" lock-lease="120" lock-timeout="60" search-timeout="300" is-server="false" copy-on-read="false" version="8.1">
+    
+    <!-- Trans Region -->
+    <region name="TransCommon">
+        <region-attributes refid="PARTITION"
+            statistics-enabled="true" async-event-queue-ids="trans-event-queue">
+            <key-constraint>java.lang.String</key-constraint>
+            <partition-attributes redundant-copies="1"
+                recovery-delay="1200000" startup-recovery-delay="1200000"
+                total-num-buckets="311">
+            </partition-attributes>
+            
+            <cache-listener>
+            	<class-name>com.wntime.gflearning.listeners.MyCacheListener</class-name>
+            </cache-listener>
+        </region-attributes>
+        
+    </region>
+    <region name="TransDetail">
+        <region-attributes refid="PARTITION"
+            statistics-enabled="true" async-event-queue-ids="trans-event-queue">
+            <key-constraint>java.lang.String</key-constraint>
+            <partition-attributes redundant-copies="1"
+                total-num-buckets="311" colocated-with="TransCommon">
+            </partition-attributes>
+        </region-attributes>
+    </region>
+    
+</cache>

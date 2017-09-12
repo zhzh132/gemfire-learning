@@ -3,18 +3,18 @@ package com.wntime.gflearning.functions;
 import java.util.Iterator;
 import java.util.Set;
 
-import com.gemstone.gemfire.cache.execute.FunctionAdapter;
-import com.gemstone.gemfire.cache.execute.FunctionContext;
-import com.gemstone.gemfire.cache.execute.FunctionException;
-import com.gemstone.gemfire.cache.execute.RegionFunctionContext;
-import com.gemstone.gemfire.cache.partition.PartitionRegionHelper;
+import org.apache.geode.cache.execute.Function;
+import org.apache.geode.cache.execute.FunctionContext;
+import org.apache.geode.cache.execute.FunctionException;
+import org.apache.geode.cache.execute.RegionFunctionContext;
+import org.apache.geode.cache.partition.PartitionRegionHelper;
 
-public class MultiGetFunction extends FunctionAdapter {
+public class MultiGetFunction implements Function<Object> {
 
 	private static final long serialVersionUID = -69496960546900248L;
 
 	@Override
-	public void execute(FunctionContext fc) {
+	public void execute(FunctionContext<Object> fc) {
 		if(! (fc instanceof RegionFunctionContext)) {
 			throw new FunctionException("Call this function using FunctionService.onRegion");
 		}

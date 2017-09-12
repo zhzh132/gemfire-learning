@@ -3,9 +3,9 @@ package com.wntime.gflearning.query;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.gemstone.gemfire.cache.Operation;
-import com.gemstone.gemfire.cache.query.CqEvent;
-import com.gemstone.gemfire.cache.query.CqStatusListener;
+import org.apache.geode.cache.Operation;
+import org.apache.geode.cache.query.CqEvent;
+import org.apache.geode.cache.query.CqStatusListener;
 
 public class PersonEventListener implements CqStatusListener {
 

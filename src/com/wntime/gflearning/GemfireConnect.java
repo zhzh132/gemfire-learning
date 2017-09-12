@@ -1,18 +1,22 @@
 package com.wntime.gflearning;
 
-import com.gemstone.gemfire.cache.Cache;
-import com.gemstone.gemfire.cache.CacheFactory;
-import com.gemstone.gemfire.cache.Region;
-import com.gemstone.gemfire.cache.RegionShortcut;
-import com.gemstone.gemfire.cache.client.ClientCache;
-import com.gemstone.gemfire.cache.client.ClientCacheFactory;
-import com.gemstone.gemfire.cache.client.ClientRegionShortcut;
+import org.apache.geode.cache.Cache;
+import org.apache.geode.cache.CacheFactory;
+import org.apache.geode.cache.Region;
+import org.apache.geode.cache.RegionShortcut;
+import org.apache.geode.cache.client.ClientCache;
+import org.apache.geode.cache.client.ClientCacheFactory;
+import org.apache.geode.cache.client.ClientRegionShortcut;
 
 public class GemfireConnect {
 
-	public static void start1(String[] args) throws Exception {
+	public static final String LOCATORS     = "192.168.56.1[30001]";
+	public static final String LOCATOR_HOST = "192.168.56.1";
+	public static final int    LOCATOR_PORT = 30001;
+	
+	public static void start(String[] args) throws Exception {
 		Cache cache = new CacheFactory()
-				.set("locators", "localhost[10334]")
+				.set("locators", LOCATORS)
 				.set("name", "MyCache")
 				.create();
 		Region r = cache.createRegionFactory(RegionShortcut.REPLICATE).create("customers");
@@ -21,9 +25,9 @@ public class GemfireConnect {
 		cache.close();
 	}
 	
-	public static void start(String[] args) throws Exception {
+	public static void start1(String[] args) throws Exception {
 		Cache cache = new CacheFactory()
-				.set("locators", "localhost[10334]")
+				.set("locators", LOCATORS)
 				.set("name", "MyCache")
 				.set("cache-xml-file", "Cache1.xml")
 				.set("log-level", "info")
@@ -39,7 +43,7 @@ public class GemfireConnect {
 	
 	public static void start2(String[] args) throws Exception {
 		ClientCache cache = new ClientCacheFactory()
-				.addPoolLocator("localhost", 10334)
+				.addPoolLocator(LOCATOR_HOST, LOCATOR_PORT)
 				.create();
 		Region r = cache.createClientRegionFactory(ClientRegionShortcut.PROXY).create("region2");
 		r.put("name", "abc");

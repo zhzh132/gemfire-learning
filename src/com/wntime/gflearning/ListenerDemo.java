@@ -3,8 +3,8 @@ package com.wntime.gflearning;
 import java.util.HashMap;
 import java.util.Scanner;
 
-import com.gemstone.gemfire.cache.Cache;
-import com.gemstone.gemfire.cache.Region;
+import org.apache.geode.cache.Cache;
+import org.apache.geode.cache.Region;
 
 public class ListenerDemo {
 

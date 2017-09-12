@@ -8,10 +8,10 @@ import java.util.Properties;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.gemstone.gemfire.cache.Declarable;
-import com.gemstone.gemfire.cache.Operation;
-import com.gemstone.gemfire.cache.asyncqueue.AsyncEvent;
-import com.gemstone.gemfire.cache.asyncqueue.AsyncEventListener;
+import org.apache.geode.cache.Declarable;
+import org.apache.geode.cache.Operation;
+import org.apache.geode.cache.asyncqueue.AsyncEvent;
+import org.apache.geode.cache.asyncqueue.AsyncEventListener;
 import com.wntime.gflearning.data.DBUtils;
 
 public class MyAsyncEventListener implements AsyncEventListener, Declarable {

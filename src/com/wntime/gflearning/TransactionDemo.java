@@ -15,7 +15,8 @@ import org.apache.geode.cache.query.QueryInvocationTargetException;
 import org.apache.geode.cache.query.QueryService;
 import org.apache.geode.cache.query.SelectResults;
 import org.apache.geode.cache.query.TypeMismatchException;
-import com.wntime.gflearning.query.Person;
+
+import com.wntime.gflearning.model.Person;
 
 public class TransactionDemo {
 

@@ -7,6 +7,8 @@ import org.apache.geode.cache.Operation;
 import org.apache.geode.cache.query.CqEvent;
 import org.apache.geode.cache.query.CqStatusListener;
 
+import com.wntime.gflearning.model.Person;
+
 public class PersonEventListener implements CqStatusListener {
 
 	private static final Log log = LogFactory.getLog(PersonEventListener.class);

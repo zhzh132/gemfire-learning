@@ -12,7 +12,7 @@ import org.apache.geode.cache.execute.FunctionService;
 import org.apache.geode.cache.execute.ResultCollector;
 import com.wntime.gflearning.functions.MultiGetFunction;
 import com.wntime.gflearning.functions.MyArrayListResultCollector;
-import com.wntime.gflearning.query.Person;
+import com.wntime.gflearning.model.Person;
 
 public class FunctionDemo {
 

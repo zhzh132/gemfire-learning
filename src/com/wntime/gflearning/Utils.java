@@ -8,7 +8,8 @@ import org.apache.geode.cache.CacheFactory;
 import org.apache.geode.cache.Region;
 import org.apache.geode.cache.client.ClientCache;
 import org.apache.geode.cache.client.ClientCacheFactory;
-import com.wntime.gflearning.query.Person;
+
+import com.wntime.gflearning.model.Person;
 
 public class Utils {
 

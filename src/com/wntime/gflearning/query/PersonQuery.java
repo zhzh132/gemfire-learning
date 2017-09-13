@@ -20,6 +20,7 @@ import org.apache.geode.cache.query.Struct;
 
 import com.wntime.gflearning.Application;
 import com.wntime.gflearning.Utils;
+import com.wntime.gflearning.model.Person;
 
 public class PersonQuery implements AutoCloseable {
 

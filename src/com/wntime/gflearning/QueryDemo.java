@@ -6,7 +6,7 @@ import java.util.Scanner;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.wntime.gflearning.query.Person;
+import com.wntime.gflearning.model.Person;
 import com.wntime.gflearning.query.PersonQuery;
 
 public class QueryDemo {

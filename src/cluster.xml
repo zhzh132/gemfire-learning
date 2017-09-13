@@ -66,7 +66,7 @@
     <region name="Person">
         <region-attributes refid="PARTITION" statistics-enabled="true">
             <key-constraint>java.lang.String</key-constraint>
-            <value-constraint>com.wntime.gflearning.query.Person</value-constraint>
+            <value-constraint>com.wntime.gflearning.model.Person</value-constraint>
             <partition-attributes redundant-copies="1"
                 recovery-delay="1200000" startup-recovery-delay="1200000"
                 total-num-buckets="5">
